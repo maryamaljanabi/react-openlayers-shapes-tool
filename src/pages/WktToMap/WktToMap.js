@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
-import { drawWktFeature } from "../../components/Map/MapHelpers";
+import {
+  clearMap,
+  drawWktFeature,
+  removeLayer,
+} from "../../components/Map/MapHelpers";
 import "./WktToMap.scss";
 
 export default function WktToMap({ map }) {
@@ -13,20 +17,22 @@ export default function WktToMap({ map }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (map && inputValue) {
-      if (
-        inputValue &&
-        (inputValue.includes("POINT") ||
+    if (map) {
+      if (inputValue) {
+        if (
+          inputValue.includes("POINT") ||
           inputValue.includes("LINESTRING") ||
           inputValue.includes("POLYGON") ||
           inputValue.includes("MULTIPOINT") ||
           inputValue.includes("MULTILINESTRING") ||
           inputValue.includes("MULTIPOLYGON") ||
-          inputValue.includes("GEOMETRYCOLLECTION"))
-      ) {
-        drawWktFeature(map, inputValue);
-      } else {
-        setInputError("The submitted geometry is not a valid WKT");
+          inputValue.includes("GEOMETRYCOLLECTION")
+        ) {
+          drawWktFeature(map, inputValue);
+        } else {
+          removeLayer(map, "wktLayer");
+          setInputError("The submitted geometry is not a valid WKT");
+        }
       }
     }
   };
@@ -51,7 +57,11 @@ export default function WktToMap({ map }) {
           </Button>
         </div>
 
-        {Boolean(inputError) && <Alert variant="danger" className="mb-3">{inputError}</Alert>}
+        {Boolean(inputError) && (
+          <Alert variant="danger" className="mb-3">
+            {inputError}
+          </Alert>
+        )}
       </Form>
     </div>
   );
