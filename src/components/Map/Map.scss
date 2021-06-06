@@ -1,0 +1,37 @@
+.map {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .layer-switcher {
+    top: 3rem;
+    left: 0.5 !important;
+    right: unset;
+
+    .panel {
+      border-radius: 10px;
+      margin-left: 2rem;
+    }
+
+    ul {
+      margin: 0.5rem auto;
+    }
+
+    li input {
+      height: 1.5rem;
+    }
+  }
+
+  .ol-full-screen {
+    left: 0.5rem !important;
+    right: unset;
+  }
+
+  .ol-zoom {
+    top: 6.5rem;
+  }
+
+  .ol-zoomslider {
+    top: 10.5rem;
+  }
+}
