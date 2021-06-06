@@ -4,13 +4,16 @@
   overflow: hidden;
 
   .layer-switcher {
-    top: 3rem;
-    left: 0.5 !important;
+    top: 20rem;
+    left: 0.6rem !important;
     right: unset;
+
+    button {
+      background-color: #ffffff85;
+    }
 
     .panel {
       border-radius: 10px;
-      margin-left: 2rem;
     }
 
     ul {
@@ -28,10 +31,13 @@
   }
 
   .ol-zoom {
-    top: 6.5rem;
+    top: 3rem;
   }
 
   .ol-zoomslider {
-    top: 10.5rem;
+    top: 7rem;
+  }
+  .ol-attribution.ol-uncollapsible {
+    display: none;
   }
 }

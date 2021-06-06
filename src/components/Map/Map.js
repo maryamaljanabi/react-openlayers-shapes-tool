@@ -32,7 +32,7 @@ const Map = ({ returnRef = null }) => {
         view: new OlView({
           //North America's center
           center: fromLonLat([-100.437012, 47.650589]),
-          zoom: 8,
+          zoom: 5,
           minZoom: 2,
           maxZoom: 18,
         }),

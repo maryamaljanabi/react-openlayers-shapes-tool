@@ -1,5 +1,5 @@
 import { Switch, Route, Redirect } from "react-router-dom";
-import Layout from "./components/Layout";
+import Layout from "./components/Layout/Layout";
 import MapShapeToWkt from "./pages/MapShapeToWkt/MapShapeToWkt";
 import WktToMap from "./pages/WktToMap/WktToMap";
 import Home from "./pages/Home/Home";
