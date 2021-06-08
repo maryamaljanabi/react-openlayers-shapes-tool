@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import {
-  clearMap,
   drawWktFeature,
   removeLayer,
+  validateGeometry,
 } from "../../components/Map/MapHelpers";
 import "./WktToMap.scss";
 
@@ -19,21 +19,22 @@ export default function WktToMap({ map }) {
     e.preventDefault();
     if (map) {
       if (inputValue) {
-        if (
-          inputValue.includes("POINT") ||
-          inputValue.includes("LINESTRING") ||
-          inputValue.includes("POLYGON") ||
-          inputValue.includes("MULTIPOINT") ||
-          inputValue.includes("MULTILINESTRING") ||
-          inputValue.includes("MULTIPOLYGON") ||
-          inputValue.includes("GEOMETRYCOLLECTION")
-        ) {
+        const validation = validateGeometry(inputValue);
+        if (validation) {
           drawWktFeature(map, inputValue);
+          setInputError("");
         } else {
           removeLayer(map, "wktLayer");
           setInputError("The submitted geometry is not a valid WKT");
         }
       }
+    }
+  };
+
+  const handleClearMap = () => {
+    if (map) {
+      removeLayer(map, "wktLayer");
+      setInputError("");
     }
   };
 
@@ -52,13 +53,13 @@ export default function WktToMap({ map }) {
           <Button variant="primary" type="submit" onClick={handleSubmit}>
             Draw On Map
           </Button>
-          <Button variant="secondary" type="button">
+          <Button variant="secondary" type="button" onClick={handleClearMap}>
             Clear Map
           </Button>
         </div>
 
         {Boolean(inputError) && (
-          <Alert variant="danger" className="mb-3">
+          <Alert variant="danger" className="mt-3">
             {inputError}
           </Alert>
         )}

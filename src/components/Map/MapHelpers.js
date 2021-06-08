@@ -6,7 +6,6 @@ import { Style, Fill, Stroke, Circle, Icon } from "ol/style";
 
 import "ol/ol.css";
 import "ol-layerswitcher/src/ol-layerswitcher.css";
-import circleIcon from "./../../assets/images/circle.png";
 
 export const drawWktFeature = (map, wktFeature) => {
   removeLayer(map, "wktLayer");
@@ -29,15 +28,7 @@ export const drawWktFeature = (map, wktFeature) => {
         features: [poly],
       }),
       style: poly.getGeometry().getType().includes("Point")
-        ? /*new Style({
-            image: new Icon({
-              anchor: [0.5, 1],
-              opacity: 1,
-              scale: 0.04,
-              src: circleIcon,
-            }),
-          })*/
-          new Style({
+        ? new Style({
             image: new Circle({
               radius: 7,
               fill: new Fill({ color: "rgba(0, 98, 255, 0.4)" }),
@@ -70,14 +61,21 @@ export const drawWktFeature = (map, wktFeature) => {
   }
 };
 
-//clear map
-export const clearMap = (map) => {
-  const layers = map.getLayers().getArray();
-  layers.forEach((layer) => {
-    if (layer instanceof VectorLayer) {
-      layer.getSource().clear();
-    }
-  });
+export const validateGeometry = (geometry) => {
+  const wktFormat = new WKT();
+  try {
+    const geom = wktFormat.readGeometry(geometry, {
+      dataProjection: "EPSG:4326",
+      featureProjection: "EPSG:3857",
+    });
+    const poly = new OlFeature({
+      geometry: geom,
+    });
+
+    return poly.getGeometry().getType();
+  } catch (error) {
+    return null;
+  }
 };
 
 //remove layer from map by name
