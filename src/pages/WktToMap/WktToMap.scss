@@ -1,7 +1,13 @@
 .wkt-to-map {
   padding: 1rem;
 
+  .error-tag {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+
   .two-col-btns-wrapper {
+    margin-top: 1rem;
     display: flex;
     gap: 1rem;
   }

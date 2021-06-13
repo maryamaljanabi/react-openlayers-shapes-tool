@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Form, Input, Button, Tag, message } from "antd";
 import {
   drawWktFeature,
   removeLayer,
   validateGeometry,
 } from "../../components/Map/MapHelpers";
 import "./WktToMap.scss";
+const { TextArea } = Input;
 
 export default function WktToMap({ map }) {
   const [inputValue, setInputValue] = useState("");
@@ -40,7 +41,27 @@ export default function WktToMap({ map }) {
 
   return (
     <div className="wkt-to-map">
-      <Form>
+      <Form layout="vertical">
+        <Form.Item label="WKT">
+          <TextArea rows={4} onChange={inputValueChangeHandler} />
+        </Form.Item>
+
+        {Boolean(inputError) && (
+          <Tag color="error" className="full-width error-tag">
+            {inputError}
+          </Tag>
+        )}
+
+        <div className="two-col-btns-wrapper">
+          <Button htmlType="submit" type="primary" onClick={handleSubmit}>
+            Draw On Map
+          </Button>
+          <Button htmlType="button" onClick={handleClearMap}>
+            Clear Map
+          </Button>
+        </div>
+      </Form>
+      {/* <Form>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label>WKT</Form.Label>
           <Form.Control
@@ -63,7 +84,7 @@ export default function WktToMap({ map }) {
             {inputError}
           </Alert>
         )}
-      </Form>
+      </Form> */}
     </div>
   );
 }

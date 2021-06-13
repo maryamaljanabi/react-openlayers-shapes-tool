@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import "./assets/styles/index.scss";
 import App from "./App";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "antd/dist/antd.css";
 
 ReactDOM.render(
   <React.StrictMode>
