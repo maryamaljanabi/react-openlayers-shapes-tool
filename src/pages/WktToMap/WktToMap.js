@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Tag, message } from "antd";
 import {
   drawWktFeature,
@@ -36,6 +36,7 @@ export default function WktToMap({ map }) {
     if (map) {
       removeLayer(map, "wktLayer");
       setInputError("");
+      setInputValue("");
     }
   };
 
@@ -43,7 +44,7 @@ export default function WktToMap({ map }) {
     <div className="wkt-to-map">
       <Form layout="vertical">
         <Form.Item label="WKT">
-          <TextArea rows={4} onChange={inputValueChangeHandler} />
+          <TextArea rows={6} onChange={inputValueChangeHandler} />
         </Form.Item>
 
         {Boolean(inputError) && (
@@ -61,30 +62,6 @@ export default function WktToMap({ map }) {
           </Button>
         </div>
       </Form>
-      {/* <Form>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-          <Form.Label>WKT</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={6}
-            onChange={inputValueChangeHandler}
-          />
-        </Form.Group>
-        <div className="two-col-btns-wrapper">
-          <Button variant="primary" type="submit" onClick={handleSubmit}>
-            Draw On Map
-          </Button>
-          <Button variant="secondary" type="button" onClick={handleClearMap}>
-            Clear Map
-          </Button>
-        </div>
-
-        {Boolean(inputError) && (
-          <Alert variant="danger" className="mt-3">
-            {inputError}
-          </Alert>
-        )}
-      </Form> */}
     </div>
   );
 }

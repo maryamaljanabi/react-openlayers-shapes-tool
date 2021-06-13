@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   LoginOutlined,
   UserAddOutlined,
@@ -14,28 +14,56 @@ import {
 import { DigitizeButton, ToggleGroup } from "@terrestris/react-geo";
 import { MapUtil, GeometryUtil } from "@terrestris/ol-util";
 import "./MapShapeToWkt.scss";
-import { Popover } from "antd";
+import { Popover, Form, Input } from "antd";
+import WKT from "ol/format/WKT";
+import { removeLayer } from "../../components/Map/MapHelpers";
+const { TextArea } = Input;
 
 export default function MapShapeToWkt({ map }) {
   const [displayValue, setDisplayValue] = useState(null);
 
+  const clearShape = () => {
+    const shapeLayer = MapUtil.getLayerByName(map, "shapeLayer");
+    shapeLayer.getSource().clear();
+  };
+
+  const shapeToWkt = (evt) => {
+    let feature;
+    let geometry;
+    if (evt.type === "drawend") {
+      feature = evt.feature;
+    }
+    const featureType = feature.getGeometry().getType();
+    geometry = feature.getGeometry();
+
+    const format = new WKT();
+
+    let wktRepresenation = null;
+    wktRepresenation = format.writeGeometry(geometry, {
+      dataProjection: "EPSG:4326",
+      featureProjection: "EPSG:3857",
+    });
+
+    setDisplayValue(wktRepresenation);
+  };
+
   return (
-    <div>
+    <div className="map-to-wkt">
       {Boolean(map) && (
         <ToggleGroup
           allowDeselect={false}
           orientation={"horizontal"}
-          className="map-to-wkt"
+          className="map-to-wkt-btns"
         >
           <DigitizeButton
             name="drawLine"
             map={map}
             shape="circle"
             drawType="LineString"
-            digitizeLayerName="drawLayer"
+            digitizeLayerName="shapeLayer"
             size="large"
-            // onDrawStart={clearDrawFeatures}
-            // onDrawEnd={storeDrawFeature}
+            onDrawStart={clearShape}
+            onDrawEnd={shapeToWkt}
           >
             <Popover content="Draw line" placement="top">
               <MinusOutlined />
@@ -46,11 +74,11 @@ export default function MapShapeToWkt({ map }) {
             name="drawPolygon"
             map={map}
             drawType="Polygon"
-            digitizeLayerName="drawLayer"
+            digitizeLayerName="shapeLayer"
             shape="circle"
             size="large"
-            // onDrawStart={clearDrawFeatures}
-            // onDrawEnd={storeDrawFeature}
+            onDrawStart={clearShape}
+            onDrawEnd={shapeToWkt}
           >
             <Popover content="Draw Polygon" placement="top">
               <SelectOutlined />
@@ -61,11 +89,11 @@ export default function MapShapeToWkt({ map }) {
             name="drawRectangle"
             map={map}
             drawType="Rectangle"
-            digitizeLayerName="drawLayer"
+            digitizeLayerName="shapeLayer"
             shape="circle"
             size="large"
-            // onDrawStart={clearDrawFeatures}
-            // onDrawEnd={storeDrawFeature}
+            onDrawStart={clearShape}
+            onDrawEnd={shapeToWkt}
           >
             <Popover content="Draw Regtangle" placement="top">
               <BorderOutlined />
@@ -76,11 +104,11 @@ export default function MapShapeToWkt({ map }) {
             name="drawCircle"
             map={map}
             drawType="Circle"
-            digitizeLayerName="drawLayer"
+            digitizeLayerName="shapeLayer"
             shape="circle"
             size="large"
-            // onDrawStart={clearDrawFeatures}
-            // onDrawEnd={storeDrawFeature}
+            onDrawStart={clearShape}
+            onDrawEnd={shapeToWkt}
           >
             <Popover content="Draw Circle" placement="top">
               <CheckCircleOutlined />
@@ -89,14 +117,11 @@ export default function MapShapeToWkt({ map }) {
 
           <DigitizeButton
             name="selectAndModify"
-            digitizeLayerName="drawLayer"
+            digitizeLayerName="shapeLayer"
             map={map}
             editType="Edit"
             shape="circle"
             size="large"
-            // onModifyEnd={storeDrawFeature}
-            // onModifyStart={storeDrawFeature}
-            // onTranslateEnd={storeDrawFeature}
           >
             <Popover content="Edit Shape" placement="top">
               <EditOutlined />
@@ -104,6 +129,12 @@ export default function MapShapeToWkt({ map }) {
           </DigitizeButton>
         </ToggleGroup>
       )}
+
+      <Form layout="vertical">
+        <Form.Item label="WKT">
+          <TextArea rows={6} value={displayValue} readOnly />
+        </Form.Item>
+      </Form>
     </div>
   );
 }
