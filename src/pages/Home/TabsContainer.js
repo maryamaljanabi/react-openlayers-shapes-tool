@@ -8,10 +8,10 @@ export default function TabsContainer({ map }) {
   return (
     <div className="tabs-container">
       <Tabs defaultActiveKey="1" type="card" size="large">
-        <TabPane tab="wktToMap" key="1">
+        <TabPane tab="WKT to Map" key="1">
           <WktToMap map={map} />
         </TabPane>
-        <TabPane tab="mapToWkt" key="2">
+        <TabPane tab="Map Shape to Wkt" key="2">
           <MapShapeToWkt map={map} />
         </TabPane>
       </Tabs>
