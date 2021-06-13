@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from "react";
-import {
-  LoginOutlined,
-  UserAddOutlined,
-  SettingOutlined,
-  GroupOutlined,
-  FormOutlined,
-  MinusOutlined,
-  BorderOutlined,
-  SelectOutlined,
-  CheckCircleOutlined,
-  EditOutlined,
-} from "@ant-design/icons";
 import { DigitizeButton, ToggleGroup } from "@terrestris/react-geo";
 import { MapUtil, GeometryUtil } from "@terrestris/ol-util";
 import "./MapShapeToWkt.scss";
 import { Popover, Form, Input } from "antd";
 import WKT from "ol/format/WKT";
 import { fromCircle } from "ol/geom/Polygon";
-import { removeLayer } from "../../components/Map/MapHelpers";
+import {
+  AiOutlineMinus,
+  BsCircle,
+  BiRectangle,
+  BiPolygon,
+  FiEdit,
+} from "react-icons/all";
 const { TextArea } = Input;
 
 export default function MapShapeToWkt({ map }) {
@@ -34,6 +28,7 @@ export default function MapShapeToWkt({ map }) {
     if (evt.type === "drawend") {
       feature = evt.feature;
     }
+
     const featureType = feature.getGeometry().getType();
     if (featureType === "Circle") {
       geometry = fromCircle(feature.getGeometry());
@@ -70,7 +65,7 @@ export default function MapShapeToWkt({ map }) {
             onDrawEnd={shapeToWkt}
           >
             <Popover content="Draw line" placement="top">
-              <MinusOutlined />
+              <AiOutlineMinus />
             </Popover>
           </DigitizeButton>
 
@@ -85,7 +80,7 @@ export default function MapShapeToWkt({ map }) {
             onDrawEnd={shapeToWkt}
           >
             <Popover content="Draw Polygon" placement="top">
-              <SelectOutlined />
+              <BiPolygon />
             </Popover>
           </DigitizeButton>
 
@@ -100,7 +95,7 @@ export default function MapShapeToWkt({ map }) {
             onDrawEnd={shapeToWkt}
           >
             <Popover content="Draw Regtangle" placement="top">
-              <BorderOutlined />
+              <BiRectangle />
             </Popover>
           </DigitizeButton>
 
@@ -115,7 +110,7 @@ export default function MapShapeToWkt({ map }) {
             onDrawEnd={shapeToWkt}
           >
             <Popover content="Draw Circle" placement="top">
-              <CheckCircleOutlined />
+              <BsCircle />
             </Popover>
           </DigitizeButton>
 
@@ -128,7 +123,7 @@ export default function MapShapeToWkt({ map }) {
             size="large"
           >
             <Popover content="Edit Shape" placement="top">
-              <EditOutlined />
+              <FiEdit />
             </Popover>
           </DigitizeButton>
         </ToggleGroup>
