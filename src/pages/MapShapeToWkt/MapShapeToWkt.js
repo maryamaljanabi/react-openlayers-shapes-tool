@@ -16,6 +16,7 @@ import { MapUtil, GeometryUtil } from "@terrestris/ol-util";
 import "./MapShapeToWkt.scss";
 import { Popover, Form, Input } from "antd";
 import WKT from "ol/format/WKT";
+import { fromCircle } from "ol/geom/Polygon";
 import { removeLayer } from "../../components/Map/MapHelpers";
 const { TextArea } = Input;
 
@@ -34,12 +35,15 @@ export default function MapShapeToWkt({ map }) {
       feature = evt.feature;
     }
     const featureType = feature.getGeometry().getType();
-    geometry = feature.getGeometry();
+    if (featureType === "Circle") {
+      geometry = fromCircle(feature.getGeometry());
+    } else {
+      geometry = feature.getGeometry();
+    }
 
     const format = new WKT();
 
-    let wktRepresenation = null;
-    wktRepresenation = format.writeGeometry(geometry, {
+    const wktRepresenation = format.writeGeometry(geometry, {
       dataProjection: "EPSG:4326",
       featureProjection: "EPSG:3857",
     });
