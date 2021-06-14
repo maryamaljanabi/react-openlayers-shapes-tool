@@ -17,17 +17,20 @@ const { TextArea } = Input;
 export default function MapShapeToWkt({ map }) {
   const [displayValue, setDisplayValue] = useState(null);
 
+  useEffect(() => {
+    return () => {
+      clearShape();
+    };
+  }, []);
+
   const clearShape = () => {
     const shapeLayer = MapUtil.getLayerByName(map, "shapeLayer");
     shapeLayer.getSource().clear();
   };
 
   const shapeToWkt = (evt) => {
-    let feature;
+    let feature = evt.feature;
     let geometry;
-    if (evt.type === "drawend") {
-      feature = evt.feature;
-    }
 
     const featureType = feature.getGeometry().getType();
     if (featureType === "Circle") {

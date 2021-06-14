@@ -7,7 +7,12 @@ const { TabPane } = Tabs;
 export default function TabsContainer({ map }) {
   return (
     <div className="tabs-container">
-      <Tabs defaultActiveKey="1" type="card" size="large">
+      <Tabs
+        defaultActiveKey="1"
+        type="card"
+        size="large"
+        destroyInactiveTabPane={true}
+      >
         <TabPane tab="WKT to Map" key="1">
           <WktToMap map={map} />
         </TabPane>

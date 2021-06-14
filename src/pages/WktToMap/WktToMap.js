@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Button, Tag, message } from "antd";
+import { Form, Input, Button, Tag } from "antd";
 import {
   drawWktFeature,
   removeLayer,
@@ -11,6 +11,12 @@ const { TextArea } = Input;
 export default function WktToMap({ map }) {
   const [inputValue, setInputValue] = useState("");
   const [inputError, setInputError] = useState("");
+
+  useEffect(() => {
+    return () => {
+      removeLayer(map, "wktLayer");
+    };
+  }, []);
 
   const inputValueChangeHandler = (e) => {
     setInputValue(e.target.value);
