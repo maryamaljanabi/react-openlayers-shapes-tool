@@ -14,7 +14,7 @@ export default function WktToMap({ map }) {
 
   useEffect(() => {
     return () => {
-      removeLayer(map, "wktLayer");
+      if (map) removeLayer(map, "wktLayer");
     };
   }, []);
 

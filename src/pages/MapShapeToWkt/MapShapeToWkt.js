@@ -19,7 +19,7 @@ export default function MapShapeToWkt({ map }) {
 
   useEffect(() => {
     return () => {
-      clearShape();
+      if (map) clearShape();
     };
   }, []);
 
@@ -117,7 +117,7 @@ export default function MapShapeToWkt({ map }) {
             </Popover>
           </DigitizeButton>
 
-          <DigitizeButton
+          {/* <DigitizeButton
             name="selectAndModify"
             digitizeLayerName="shapeLayer"
             map={map}
@@ -128,7 +128,7 @@ export default function MapShapeToWkt({ map }) {
             <Popover content="Edit Shape" placement="top">
               <FiEdit />
             </Popover>
-          </DigitizeButton>
+          </DigitizeButton> */}
         </ToggleGroup>
       )}
 
