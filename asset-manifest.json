@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/react-openlayers-shapes-tool/static/css/main.93706ac0.chunk.css",
-    "main.js": "/react-openlayers-shapes-tool/static/js/main.c710a653.chunk.js",
-    "main.js.map": "/react-openlayers-shapes-tool/static/js/main.c710a653.chunk.js.map",
+    "main.js": "/react-openlayers-shapes-tool/static/js/main.47b95ad2.chunk.js",
+    "main.js.map": "/react-openlayers-shapes-tool/static/js/main.47b95ad2.chunk.js.map",
     "runtime-main.js": "/react-openlayers-shapes-tool/static/js/runtime-main.f7e21e62.js",
     "runtime-main.js.map": "/react-openlayers-shapes-tool/static/js/runtime-main.f7e21e62.js.map",
     "static/css/2.8d53f2d2.chunk.css": "/react-openlayers-shapes-tool/static/css/2.8d53f2d2.chunk.css",
-    "static/js/2.aae32cc6.chunk.js": "/react-openlayers-shapes-tool/static/js/2.aae32cc6.chunk.js",
-    "static/js/2.aae32cc6.chunk.js.map": "/react-openlayers-shapes-tool/static/js/2.aae32cc6.chunk.js.map",
+    "static/js/2.82c21eed.chunk.js": "/react-openlayers-shapes-tool/static/js/2.82c21eed.chunk.js",
+    "static/js/2.82c21eed.chunk.js.map": "/react-openlayers-shapes-tool/static/js/2.82c21eed.chunk.js.map",
     "index.html": "/react-openlayers-shapes-tool/index.html",
     "static/css/2.8d53f2d2.chunk.css.map": "/react-openlayers-shapes-tool/static/css/2.8d53f2d2.chunk.css.map",
     "static/css/main.93706ac0.chunk.css.map": "/react-openlayers-shapes-tool/static/css/main.93706ac0.chunk.css.map",
-    "static/js/2.aae32cc6.chunk.js.LICENSE.txt": "/react-openlayers-shapes-tool/static/js/2.aae32cc6.chunk.js.LICENSE.txt",
+    "static/js/2.82c21eed.chunk.js.LICENSE.txt": "/react-openlayers-shapes-tool/static/js/2.82c21eed.chunk.js.LICENSE.txt",
     "static/media/AddWmsLayerEntry.less": "/react-openlayers-shapes-tool/static/media/AddWmsLayerEntry.b1a1d33e.less",
     "static/media/AddWmsPanel.less": "/react-openlayers-shapes-tool/static/media/AddWmsPanel.8c31daaf.less",
     "static/media/CircleMenu.less": "/react-openlayers-shapes-tool/static/media/CircleMenu.6993d570.less",
@@ -63,8 +63,8 @@
   "entrypoints": [
     "static/js/runtime-main.f7e21e62.js",
     "static/css/2.8d53f2d2.chunk.css",
-    "static/js/2.aae32cc6.chunk.js",
+    "static/js/2.82c21eed.chunk.js",
     "static/css/main.93706ac0.chunk.css",
-    "static/js/main.c710a653.chunk.js"
+    "static/js/main.47b95ad2.chunk.js"
   ]
 }
