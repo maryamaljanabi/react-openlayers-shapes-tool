@@ -1,4 +1,4 @@
-# MERN-Blog
+# React Openlayers Shapes Tool
 
 ## Table of contents
 
@@ -18,6 +18,10 @@ WKT stands for Well-Known Text, which is a form of representing vector geometry.
 ## Demo
 
 ![Image description](screenshot.png)
+
+This application is deployed on Github Pages and can be accessed through the following link:
+
+[React Openlayers Shapes Tool](http://maryamaljanabi.github.io/react-openlayers-shapes-tool)
 
 ## Technology
 
