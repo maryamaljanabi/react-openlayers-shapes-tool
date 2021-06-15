@@ -9,3 +9,13 @@
   padding: 0.5rem;
   overflow: auto;
 }
+
+.footer {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background-color: rgba(128, 128, 128, 0.438);
+  border: 1px solid rgba(128, 128, 128, 0.438);
+  border-radius: 5px;
+  padding: 0.3rem;
+}

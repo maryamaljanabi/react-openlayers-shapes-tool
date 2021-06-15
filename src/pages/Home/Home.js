@@ -9,6 +9,7 @@ export default function Home() {
     <div>
       <Map returnRef={setMap} />
       <TabsContainer map={map} />
+      <div className="footer">© 2021 Maryam Aljanabi</div>
     </div>
   );
 }
