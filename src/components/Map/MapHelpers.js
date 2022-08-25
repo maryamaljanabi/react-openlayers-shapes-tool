@@ -2,7 +2,7 @@ import OlFeature from "ol/Feature";
 import VectorSource from "ol/source/Vector";
 import VectorLayer from "ol/layer/Vector";
 import WKT from "ol/format/WKT";
-import { Style, Fill, Stroke, Circle, Icon } from "ol/style";
+import { Style, Fill, Stroke, Circle } from "ol/style";
 
 import "ol/ol.css";
 import "ol-layerswitcher/src/ol-layerswitcher.css";
@@ -19,8 +19,6 @@ export const drawWktFeature = (map, wktFeature) => {
     const poly = new OlFeature({
       geometry: geometry,
     });
-
-    console.log(poly.getGeometry().getType().includes("Point"));
 
     const vectorLayer = new VectorLayer({
       title: "WKT Layer",
@@ -52,11 +50,7 @@ export const drawWktFeature = (map, wktFeature) => {
     vectorLayer.set("name", "wktLayer");
 
     map.addLayer(vectorLayer);
-    const polygonExtent = vectorLayer
-      .getSource()
-      .getFeatures()[0]
-      .getGeometry()
-      .getExtent();
+    const polygonExtent = vectorLayer.getSource().getFeatures()[0].getGeometry().getExtent();
     map.getView().fit(polygonExtent, map.getSize());
   }
 };

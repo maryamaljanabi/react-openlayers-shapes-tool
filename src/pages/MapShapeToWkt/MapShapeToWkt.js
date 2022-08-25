@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { DigitizeButton, ToggleGroup } from "@terrestris/react-geo";
-import { MapUtil, GeometryUtil } from "@terrestris/ol-util";
+import { MapUtil } from "@terrestris/ol-util";
 import "./MapShapeToWkt.scss";
 import { Popover, Form, Input } from "antd";
 import WKT from "ol/format/WKT";
 import { fromCircle } from "ol/geom/Polygon";
-import {
-  AiOutlineMinus,
-  BsCircle,
-  BiRectangle,
-  BiPolygon,
-  FiEdit,
-} from "react-icons/all";
+import { AiOutlineMinus, BsCircle, BiRectangle, BiPolygon } from "react-icons/all";
 const { TextArea } = Input;
 
 export default function MapShapeToWkt({ map }) {
@@ -52,66 +46,26 @@ export default function MapShapeToWkt({ map }) {
   return (
     <div className="map-to-wkt">
       {Boolean(map) && (
-        <ToggleGroup
-          allowDeselect={false}
-          orientation={"horizontal"}
-          className="map-to-wkt-btns"
-        >
-          <DigitizeButton
-            name="drawLine"
-            map={map}
-            shape="circle"
-            drawType="LineString"
-            digitizeLayerName="shapeLayer"
-            size="large"
-            onDrawStart={clearShape}
-            onDrawEnd={shapeToWkt}
-          >
+        <ToggleGroup allowDeselect={false} orientation={"horizontal"} className="map-to-wkt-btns">
+          <DigitizeButton name="drawLine" map={map} shape="circle" drawType="LineString" digitizeLayerName="shapeLayer" size="large" onDrawStart={clearShape} onDrawEnd={shapeToWkt}>
             <Popover content="Draw line" placement="top">
               <AiOutlineMinus />
             </Popover>
           </DigitizeButton>
 
-          <DigitizeButton
-            name="drawPolygon"
-            map={map}
-            drawType="Polygon"
-            digitizeLayerName="shapeLayer"
-            shape="circle"
-            size="large"
-            onDrawStart={clearShape}
-            onDrawEnd={shapeToWkt}
-          >
+          <DigitizeButton name="drawPolygon" map={map} drawType="Polygon" digitizeLayerName="shapeLayer" shape="circle" size="large" onDrawStart={clearShape} onDrawEnd={shapeToWkt}>
             <Popover content="Draw Polygon" placement="top">
               <BiPolygon />
             </Popover>
           </DigitizeButton>
 
-          <DigitizeButton
-            name="drawRectangle"
-            map={map}
-            drawType="Rectangle"
-            digitizeLayerName="shapeLayer"
-            shape="circle"
-            size="large"
-            onDrawStart={clearShape}
-            onDrawEnd={shapeToWkt}
-          >
+          <DigitizeButton name="drawRectangle" map={map} drawType="Rectangle" digitizeLayerName="shapeLayer" shape="circle" size="large" onDrawStart={clearShape} onDrawEnd={shapeToWkt}>
             <Popover content="Draw Regtangle" placement="top">
               <BiRectangle />
             </Popover>
           </DigitizeButton>
 
-          <DigitizeButton
-            name="drawCircle"
-            map={map}
-            drawType="Circle"
-            digitizeLayerName="shapeLayer"
-            shape="circle"
-            size="large"
-            onDrawStart={clearShape}
-            onDrawEnd={shapeToWkt}
-          >
+          <DigitizeButton name="drawCircle" map={map} drawType="Circle" digitizeLayerName="shapeLayer" shape="circle" size="large" onDrawStart={clearShape} onDrawEnd={shapeToWkt}>
             <Popover content="Draw Circle" placement="top">
               <BsCircle />
             </Popover>
